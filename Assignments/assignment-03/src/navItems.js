@@ -1,0 +1,22 @@
+export const navbarItems = [
+  {
+    key: "navbar-item-home",
+    name: "",
+    label: "Home",
+  },
+  {
+    key: "navbar-item-product",
+    name: "products",
+    label: "Products",
+  },
+  {
+    key: "navbar-item-cart",
+    name: "cart",
+    label: "Cart",
+  },
+  {
+    key: "navbar-item-about",
+    name: "about",
+    label: "About",
+  },
+];

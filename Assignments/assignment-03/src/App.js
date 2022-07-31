@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { Link, Route, Routes } from "react-router-dom";
 
-function App() {
+import { About } from "./About";
+import { Cart } from "./Cart";
+import { Products } from "./Products";
+import { navbarItems } from "./navItems";
+
+export function App() {
+  let style = ({ isHover }) => ({
+    color: isHover ? "#284975" : "",
+  });
+
+  const theNavItems = navbarItems.map((el) => {
+    return (
+      <li key={el.key}>
+        <Link to={el.name}>{el.label} </Link>
+      </li>
+    );
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <nav>
+        <h1>Tacomania </h1>
+        <ul>{theNavItems}</ul>
+      </nav>
+      <div id="app-body">
+        <Routes>
+          <Route path="/" element={<>Home</>} />
+          <Route path="products" element={<Products />}>
+            <Route path="info" element={<>ContactInfo</>} />
+            <Route path="media" element={<>ContactSocialMedia</>} />
+          </Route>
+          <Route path="about" element={<About />} />
+          <Route path="cart" element={<Cart />} />
+        </Routes>
+      </div>
+    </>
   );
 }
-
-export default App;
