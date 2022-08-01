@@ -1,29 +1,14 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-import { About } from "./About";
-import { Cart } from "./Cart";
+import { About } from "./components/About";
+import { Cart } from "./components/Cart";
+import { Navbar } from "./components/Navbar";
 import { ProductsList } from "./components/ProductsList";
-import { navbarItems } from "./components/navItems";
 
 export function App() {
-  let style = ({ isHover }) => ({
-    color: isHover ? "#284975" : "",
-  });
-
-  const theNavItems = navbarItems.map((el) => {
-    return (
-      <li key={el.key}>
-        <Link to={el.name}>{el.label} </Link>
-      </li>
-    );
-  });
-
   return (
     <>
-      <nav>
-        <h1>Tacomania </h1>
-        <ul>{theNavItems}</ul>
-      </nav>
+      <Navbar />
       <div id="app-body">
         <Routes>
           <Route path="/" element={<>Home</>} />
