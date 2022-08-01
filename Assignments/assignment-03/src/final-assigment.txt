@@ -1,0 +1,17 @@
+Hello everyone!
+
+The final assignment is due on July 27 at 11:59 pm
+
+Create an app using create-react-app and incorporate the following:
+
+1) React router. You should define at least two (2) distinct routes. (I.E. "all products" page and "single product" page). At this stage, you are merely setting up the components and making sure that your Router works. Have the components render something like "Hi, from all products" and "Hi, from single product".
+
+2) Utilize an external API such as: storerestapi.com or fakestoreapi.com (read up on their docs, try a GET request in the browser to see that it works)
+
+3) Implement the useEffect / fetch / setState pattern in each page such that the products render correctly to the screen when the user navigates to the route. Hint: You will want to use the useParams hook for the "single product" page in order to extract the product ID from the route URL. This ID is then baked into the fetch request URL.
+
+STRETCH GOAL (not required)
+
+4) Replace the useEffect/fetch/setState pattern with npm i @tanstack/react-query the same way I showed you in today's class
+
+5) Implement useContext using the provider pattern to create a shopping cart and add a route so that the user can view their shopping cart. Immer will come in handy here.

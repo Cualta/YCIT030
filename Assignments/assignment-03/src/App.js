@@ -2,8 +2,8 @@ import { Link, Route, Routes } from "react-router-dom";
 
 import { About } from "./About";
 import { Cart } from "./Cart";
-import { Products } from "./Products";
-import { navbarItems } from "./navItems";
+import { ProductsList } from "./components/ProductsList";
+import { navbarItems } from "./components/navItems";
 
 export function App() {
   let style = ({ isHover }) => ({
@@ -27,7 +27,7 @@ export function App() {
       <div id="app-body">
         <Routes>
           <Route path="/" element={<>Home</>} />
-          <Route path="products" element={<Products />}>
+          <Route path="products" element={<ProductsList />}>
             <Route path="info" element={<>ContactInfo</>} />
             <Route path="media" element={<>ContactSocialMedia</>} />
           </Route>
