@@ -17,21 +17,31 @@ export function Product(props) {
 
   return (
     <Paper sx={styles.paper} className="Product">
-      <Box flexDirection="column" p={1.5}>
-        <Typography color={grey[800]} variant="h5" textAlign={"center"}>
+      <Box flexDirection="column" p={1}>
+        <Typography
+          sx={{ mb: 2, px: 1 }}
+          color={grey[800]}
+          variant="h6"
+          textAlign={"center"}
+        >
           {title}
         </Typography>
         <CardMedia
           component="img"
           image={image}
           alt={title}
-          sx={{ width: 150, height: 200, mx: "auto", my: 2 }}
+          sx={{ width: 150, mx: "auto", my: 2 }}
         />
 
         <Typography variant="h4" textAlign="center">
           {price}
         </Typography>
-        <Typography pl={0.12} color={"#a95b17"} textAlign="center">
+        <Typography
+          sx={{ textTransform: "capitalize" }}
+          pl={0.12}
+          color={"#a95b17"}
+          textAlign="center"
+        >
           {category}
         </Typography>
       </Box>
