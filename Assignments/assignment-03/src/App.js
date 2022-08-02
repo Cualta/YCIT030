@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { About } from "./components/About";
 import { Cart } from "./components/Cart";
+import { Home } from "./components/Home";
 import { Navbar } from "./components/Navbar";
 import { ProductsList } from "./components/ProductsList";
 
@@ -11,12 +12,13 @@ export function App() {
       <Navbar />
       <div id="app-body">
         <Routes>
-          <Route path="/" element={<>Home</>} />
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
           <Route path="products" element={<ProductsList />}>
             <Route path="info" element={<>ContactInfo</>} />
             <Route path="media" element={<>ContactSocialMedia</>} />
           </Route>
-          <Route path="about" element={<About />} />
+
           <Route path="cart" element={<Cart />} />
         </Routes>
       </div>

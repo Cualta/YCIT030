@@ -10,11 +10,6 @@ export const navbarItems = [
     label: "Products",
   },
   {
-    key: "navbar-item-cart",
-    name: "cart",
-    label: "Cart",
-  },
-  {
     key: "navbar-item-about",
     name: "about",
     label: "About",

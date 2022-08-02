@@ -1,19 +1,19 @@
-import blessed from "./images/blessed.png";
-import cheekyWink from "./images/cheeky-wink.png";
-import cowboy from "./images/cowboy.png";
-import friendlySmile from "./images/friendly-smile.png";
-import happy from "./images/happy.png";
-import joker from "./images/joker.png";
-import loveBlush from "./images/love-blush.png";
-import think from "./images/think.png";
+import airTagSingle from "./images/airtag-single.jpeg";
+import cheekyWink from "./images/Belkin-Secure-Holder-Key-Ring-AirTag .jpeg";
+import cowboy from "./images/Belkin-Secure-Holder-Strap-AirTag.jpeg";
+import friendlySmile from "./images/AirTag-Leather-Loop- Saddle.jpeg";
+import happy from "./images/AirTag-Leather-Key-Ring–Wisteria.jpeg";
+import joker from "./images/AirTag-Hermes-Key Ring.jpeg";
+/* import loveBlush from "./images/love-blush.png";
+import think from "./images/think.png"; */
 import { v4 as uuidv4 } from "uuid";
 
 export const products = [
   {
     id: uuidv4(),
-    name: "Blessed",
-    description: "Cartoon clip art",
-    imgSrc: blessed,
+    name: "Airtag Single",
+    description: "Personalise your AirTag with free engraving. Only at Apple.",
+    imgSrc: airTagSingle,
     imgAlt: "blessed",
     price: "$70.30",
   },
@@ -57,7 +57,7 @@ export const products = [
     imgAlt: "joker",
     price: "$21.20",
   },
-  {
+  /* {
     id: uuidv4(),
     name: "Love Blush",
     description: "Cartoon clip art",
@@ -72,5 +72,5 @@ export const products = [
     imgSrc: think,
     imgAlt: "think",
     price: "$21.20",
-  },
+  }, */
 ];
