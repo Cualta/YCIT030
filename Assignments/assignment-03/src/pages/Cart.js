@@ -1,3 +1,8 @@
 export function Cart() {
-  return <span>This is the cart page</span>;
+  return (
+    <main>
+      <h2>List of Products</h2>
+      <article>This is the cart page</article>
+    </main>
+  );
 }

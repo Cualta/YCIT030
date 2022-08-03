@@ -1,82 +1,47 @@
-import { Button } from "@mui/material";
-import create from "zustand";
-
-/* export const useAppStore = create((set) => ({
-  count: 0,
-  inc: () => set((state) => ({ count: state.count + 1 })),
-}));
-
-function add() {
-  const inc = useStore((state) => state.inc);
-  return <Button onClick={inc}></Button>;
-}
-
-function Counter() {
-  const count = useStore((state) => state.count);
-  return { count };
-} */
-
-export const useAppStore = create((set) => {
-  return {
-    role: "user",
-
-    addToCart: () => {
-      set({
-        role: "admin",
-      });
-    },
-  };
-});
+import create, { useStore } from "zustand";
 
 export const useDialogStore = create((set, get) => {
   return {
-    result: null,
     dialogState: "closed",
 
-    type: "",
-    message: "",
-    headerText: "",
+    result: null,
 
-    open: (type, message, headerText) => {
-      set({
-        result: null,
-        dialogState: "opened",
-        type,
-        message,
-        headerText,
-      });
+    getResult: () => {
+      const allState = get();
+      return allState.result;
+    },
+
+    open: () => {
+      set({ dialogState: "opened", result: null });
     },
 
     close: (result) => {
-      set({
-        result,
-        dialogState: "closed",
-      });
-    },
+      console.log(`close() result=${result}`);
 
-    msgBox: (message, headerText) => {
-      get().open("ok", message, headerText);
-
-      return get().waitForUser();
-    },
-
-    msgBoxYN: (message, headerText) => {
-      get().open("yes-no", message, headerText);
-
-      return get().waitForUser();
-    },
-
-    waitForUser: () => {
-      return new Promise((resolve) => {
-        const handle = setInterval(() => {
-          console.log("waiting for user");
-          const result = get().result;
-          if (result !== null) {
-            resolve(result);
-            clearInterval(handle);
-          }
-        }, 50);
-      });
+      set({ dialogState: "closed", result });
     },
   };
 });
+
+export const useAppStore = create((set) => {
+  return {
+    /* addToCart: () => {
+      set({ role: "admin" });
+    }, */
+  };
+});
+
+/* export const useAppStore = create((set) => ({
+//   count: 0,
+//   inc: () => set((state) => ({ count: state.count + 1 })),
+// }));
+
+// function add() {
+//   const inc = useStore((state) => state.inc);
+//   return <Button onClick={inc}></Button>;
+// }
+
+// function Counter() {
+//   const count = useStore((state) => state.count);
+//   return { count };
+// } */

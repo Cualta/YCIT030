@@ -4,6 +4,7 @@ import { About } from "./pages/About";
 import { Cart } from "./pages/Cart";
 import { Home } from "./pages/Home";
 import { Navbar } from "./components/Navbar";
+import { Product } from "./components/Product";
 import { Products } from "./pages/Products";
 
 export function App() {

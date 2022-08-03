@@ -1,15 +1,13 @@
-import { Box, Button, CardMedia, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, CardMedia, Paper, Typography } from "@mui/material";
 import { useAppStore, useDialogStore } from "../store";
 
 import { Add } from "@mui/icons-material";
-import { Children } from "react";
 import { grey } from "@mui/material/colors";
 
 export function Product(props) {
-  const { title, description, image, id, rating, price, category } = props;
+  const { title, image, id, price, category } = props;
 
-  const { role, addToCart: addToCart } = useAppStore();
-  const { msgBox, msgBoxYN } = useDialogStore();
+  const { open, getResult } = useDialogStore();
 
   const styles = {
     paper: {
@@ -22,7 +20,7 @@ export function Product(props) {
 
   return (
     <Paper sx={styles.paper} className="Product">
-      <Box flexDirection="column" p={1}>
+      <Box key={id} flexDirection="column" p={1}>
         <Typography
           sx={{ mb: 2, px: 1 }}
           color={grey[800]}
@@ -62,12 +60,20 @@ export function Product(props) {
           variant="outlined"
           size="small"
           startIcon={<Add />}
-          onClick={async () => {
-            const result = await msgBoxYN("Add to cart") // prettier-ignore
+          onClick={async (e) => {
+            //e.setSelectedProduct(e.open);
+            open();
 
-            if (result === "yes") {
-              addToCart();
-            }
+            const dialogPromise = new Promise((resolve) => {
+              setInterval(() => {
+                const result = getResult();
+                if (result !== null) {
+                  resolve(result);
+                }
+              }, 50);
+            });
+
+            const dialogResult = await dialogPromise;
           }}
         >
           See details

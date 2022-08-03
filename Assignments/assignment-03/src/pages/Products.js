@@ -10,8 +10,7 @@ import {
 import { useEffect, useState } from "react";
 
 import { Product } from "../components/Product";
-import { ProductCard } from "../components/ProductCard";
-import { products } from "../productsItems";
+import { ProductDialogDetails } from "../components/ProductDialogDetails";
 
 const cache = {};
 
@@ -107,7 +106,7 @@ export function Products() {
           return (
             <Grid
               item
-              key={product.key}
+              key={product.id}
               columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               component="card"
               sx={{ textAlign: "center" }}
@@ -117,6 +116,7 @@ export function Products() {
           );
         })}
       </Grid>
+      <ProductDialogDetails />
     </main>
   );
 }

@@ -6,43 +6,63 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 
-import { useDialogStore } from "./store";
-import { useMemo } from "react";
+import { Product } from "./Product";
+import { useDialogStore } from "../store";
 
-export const ProductDialogDetails = ({ children }) => {
-  const { dialogState, type, message, headerText, close } = useDialogStore();
+const cache = {};
+
+export function ProductDialogDetails() {
+  const { dialogState, open, close, getResult } = useDialogStore();
 
   const isOpen = dialogState === "opened";
 
-  const buttons = useMemo(() => {
-    switch (type) {
-      case "yes-no":
-        return (
-          <>
-            <Button onClick={() => close("no")}>No</Button>
-            <Button onClick={() => close("yes")}>Yes</Button>
-          </>
-        );
-      default:
-        return (
-          <>
-            <Button onClick={() => close("ok")}>OK</Button>
-          </>
-        );
+  const [selectedProduct, setSelectedProduct] = useState({});
+
+  useEffect(() => {
+    fetch(`https://fakestoreapi.com/products/${selectedProduct}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("got product details");
+        setSelectedProduct(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (cache[selectedProduct]) {
+      setSelectedProduct(cache[selectedProduct]);
+      return;
     }
-  }, [type]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    fetch(`https://fakestoreapi.com/products/${selectedProduct}`)
+      .then((res) => res.json())
+      .then(
+        (data) => {
+          console.log("got product details");
+          setSelectedProduct(data);
+        },
+        [selectedProduct]
+      );
+  });
 
   return (
     <>
-      {children}
-      <Dialog open={isOpen}>
-        {headerText && <DialogTitle>{headerText}</DialogTitle>}
+      <Dialog
+        open={dialogState === "opened"}
+        PaperProps={{ sx: { width: "30%", height: "80%" } }}
+      >
+        <DialogTitle>Product Details</DialogTitle>
         <DialogContent>
-          <DialogContentText>{message}</DialogContentText>
-          <DialogActions>{buttons}</DialogActions>
+          <DialogContentText>
+            <Product key={selectedProduct.id} {...selectedProduct} />
+          </DialogContentText>
+          <DialogActions>
+            <Button onClick={() => close("no")}>Close</Button>
+            <Button onClick={() => close("yes")}>Add to Cart</Button>
+          </DialogActions>
         </DialogContent>
       </Dialog>
     </>
   );
-};
+}
