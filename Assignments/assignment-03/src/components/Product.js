@@ -1,10 +1,15 @@
-import { Box, CardMedia, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, CardMedia, Grid, Paper, Typography } from "@mui/material";
+import { useAppStore, useDialogStore } from "../store";
 
+import { Add } from "@mui/icons-material";
 import { Children } from "react";
 import { grey } from "@mui/material/colors";
 
 export function Product(props) {
   const { title, description, image, id, rating, price, category } = props;
+
+  const { role, addToCart: addToCart } = useAppStore();
+  const { msgBox, msgBoxYN } = useDialogStore();
 
   const styles = {
     paper: {
@@ -44,6 +49,29 @@ export function Product(props) {
         >
           {category}
         </Typography>
+      </Box>
+      <Box
+        sx={{
+          "& button": { m: 1, mb: 2, mr: 2 },
+          display: "flex",
+          flexDirection: "row-reverse",
+        }}
+      >
+        <Button
+          sx={{ alignContent: "center" }}
+          variant="outlined"
+          size="small"
+          startIcon={<Add />}
+          onClick={async () => {
+            const result = await msgBoxYN("Add to cart") // prettier-ignore
+
+            if (result === "yes") {
+              addToCart();
+            }
+          }}
+        >
+          See details
+        </Button>
       </Box>
     </Paper>
   );
